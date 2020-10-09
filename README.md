@@ -1,17 +1,17 @@
-# national-flag-image-api
+# national-flag-high-resolution-image-js
 
-🏁 national-flag-image-api is a JavaScript library for drawing raw high-definition national flags.
+🏁 national-flag-image-api is a JavaScript library for drawing raw high-resolution national flags.
 
 # how to use?
 
 **Step1)** Include library
-You can download the [latest release script](https://github.com/sowon-project/national-flag-image-api/blob/main/docs/js/national-flag-api-1.0.0.js). 
+You can download the [latest release script](https://github.com/sowon-project/national-flag-high-resolution-image-js/blob/main/docs/js/national-flag-api-1.0.0.js). 
 ```js
 <script type="text/javascript"  src="js/national-flag-api-1.0.0.js"></script>
 ```
 or you can load directly from jsdelivr cdn.
 ```js
-<script type="text/javascript"  src="https://cdn.jsdelivr.net/gh/sowon-project/national-flag-image-api@main/docs/js/national-flag-api-1.0.0.js"></script>
+<script type="text/javascript"  src="https://cdn.jsdelivr.net/gh/sowon-project/national-flag-high-resolution-image-js@main/docs/js/national-flag-api-1.0.0.js"></script>
 ```
 
 **Step2)** Setup by NationalFlagApiBuilder
