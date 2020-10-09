@@ -22,14 +22,27 @@
         console.log(getParam("country"));
 
         var widthParam = (getParam("size").length > 0 ? getParam("size") : "800");
+        var countryParam = (getParam("country").length > 0 ? getParam("country") : "kr");
 
         var width = Number.parseInt(widthParam, 10);
         var height = width * 3 / 2;
 
+        var country = countryParam.toLowerCase();
 
-        fetch('https://sowon-project.github.io/national-flag-image-api/files/south-korea-flag.svg')
+
+
+        fetch('https://sowon-project.github.io/national-flag-image-api/files/'+country+'.svg')
             .then(response => response.text())
             .then((data) => {
+
+                var checkRatio = new Image();
+                checkRatio.onload = function(){
+                    var ratio = checkRatio.naturalHeight/checkRatio.naturalWidth;
+                    console.log(ratio);
+                }
+                checkRatio.src = 'data:image/svg+xml;charset=utf-8,' + encodeURIComponent(data);
+       
+
                 var canvas = document.querySelector('#canvas1');
                 var ctx = canvas.getContext('2d');
 
