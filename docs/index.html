@@ -15,20 +15,20 @@
         <canvas id="flag-canvas" class="col"></canvas>
     </div>
 
-    <script type="text/javascript"  src="https://raw.githubusercontent.com/sowon-project/national-flag-image-api/main/docs/js/national-flag-api-1.0.0.js"></script>
+    <script type="application/javascript"  src="https://cdn.jsdelivr.net/gh/sowon-project/national-flag-image-api@main/docs/js/national-flag-api-1.0.0.js"></script>
     <script>
 
-window.onload=function() {
+        window.onload=function() {
 
-    var flagImage = new NationalFlagApiBuilder()
-        .setWidth(1000)
-        .setCountry("us")
-        .setCanvasId("#flag-canvas")
-        .build();
+            var flagImage = new NationalFlagApiBuilder()
+                .setWidth(1000)
+                .setCountry("us")
+                .setCanvasId("#flag-canvas")
+                .build();
 
-    flagImage.set();
+            flagImage.set();
 
-}
+        }
 
     </script>
 </body>
