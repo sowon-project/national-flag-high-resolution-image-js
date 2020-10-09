@@ -31,7 +31,7 @@ var flagImage = new NationalFlagApiBuilder()
     .setWidth(1000)
     .setCountry("us")
     .setCanvasId("#flag-canvas")
-    .build();</code></pre>
+    .build();
 ```
 
 **Step4)** Call set() method
