@@ -14,8 +14,10 @@
 
 <body>
     <div class="container text-center d-flex align-items-center justify-content-center">
-        <canvas id="canvas1" class="col" ></canvas>
+        <canvas id="canvas1" class="col"></canvas>
     </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/1.3.8/FileSaver.min.js"></script>
     <script>
     window.addEventListener("load", function() {
         console.log(getParam("size"));
@@ -25,41 +27,46 @@
         var countryParam = (getParam("country").length > 0 ? getParam("country") : "kr");
 
         var width = Number.parseInt(widthParam, 10);
-        var height = width * 3 / 2;
-
         var country = countryParam.toLowerCase();
 
 
 
-        fetch('https://sowon-project.github.io/national-flag-image-api/files/'+country+'.svg')
+        fetch('https://sowon-project.github.io/national-flag-image-api/files/' + country + '.svg')
             .then(response => response.text())
             .then((data) => {
 
                 var checkRatio = new Image();
-                checkRatio.onload = function(){
-                    var ratio = checkRatio.naturalHeight/checkRatio.naturalWidth;
+                checkRatio.onload = function() {
+                    var ratio = checkRatio.naturalWidth / checkRatio.naturalHeight;
                     console.log(ratio);
+
+
+
+                    var canvas = document.querySelector('#canvas1');
+                    var ctx = canvas.getContext('2d');
+
+                    ctx.canvas.height = width;
+                    ctx.canvas.width = width * ratio;
+                    var img1 = new Image();
+                    img1.onload = function() {
+                        ctx.drawImage(img1, 0, 0);
+
+                        // var element = document.createElement('a');
+                        // element.setAttribute('href', canvas.toDataURL("image/png"));
+                        // element.setAttribute('download', "flag.png");
+                        // element.style.display = 'none';
+                        // document.body.appendChild(element);
+                        // element.click();
+
+                        canvas.toBlob(function(blob) {
+                          saveAs(blob, 'flag.png');
+                        });
+                    }
+                    img1.src = 'data:image/svg+xml;charset=utf-8,' + encodeURIComponent(data);
+
+
                 }
                 checkRatio.src = 'data:image/svg+xml;charset=utf-8,' + encodeURIComponent(data);
-       
-
-                var canvas = document.querySelector('#canvas1');
-                var ctx = canvas.getContext('2d');
-
-                ctx.canvas.height = width;
-                ctx.canvas.width = height;
-                var img1 = new Image();
-                img1.onload = function() {
-                    ctx.drawImage(img1, 0, 0);
-
-                    // var element = document.createElement('a');
-                    // element.setAttribute('href', canvas.toDataURL("image/png"));
-                    // element.setAttribute('download', "flag.png");
-                    // element.style.display = 'none';
-                    // document.body.appendChild(element);
-                    // element.click();
-                }
-                img1.src = 'data:image/svg+xml;charset=utf-8,' + encodeURIComponent(data);
             })
     });
 
