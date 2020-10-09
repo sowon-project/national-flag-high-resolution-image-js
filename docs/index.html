@@ -9,21 +9,25 @@
 </head>
 
 <body id="page-top">
-   <!--  <object type="image/svg+xml" data="files/south-korea-flag.svg"></object>
+    <!--  <object type="image/svg+xml" data="files/south-korea-flag.svg"></object>
  -->
     <!-- <canvas id="canvas1" width="1024px" height="1024px"></canvas>
  -->
 
-IMAGE
-<img/>
-
-CANVAS
-<canvas></canvas>
-
-<a id="dl" download="Canvas.png" href="#">Download Canvas</a>
+ <svg height="100">
+  <rect width="40" height="50" style="fill:blue;" />
+  <rect width="20" height="80" style="fill:red;" />
+  <circle r="20" cx="50" cy="50" style="fill:yellow;" />
+</svg>
 
 
 
+
+    IMAGE
+    <img />
+    CANVAS
+    <canvas></canvas>
+    <a id="dl" download="Canvas.png" href="#">Download Canvas</a>
     <script>
     window.addEventListener("load", function() {
 
@@ -31,67 +35,94 @@ CANVAS
 
         console.log(getParam("country"));
 
-
 var svg = document.querySelector('svg');
 
-var img = document.querySelector('img');
-var canvas = document.querySelector('canvas');
 
-// get svg data
-var xml = new XMLSerializer().serializeToString(svg);
+        console.log(svg);
 
-// make it base64
-var svg64 = btoa(xml);
-var b64Start = 'data:image/svg+xml;base64,';
 
-// prepend a "header"
-var image64 = b64Start + svg64;
 
-// set it as the source of the img element
-img.src = image64;
+        var svg;
 
-// draw the image onto the canvas
-canvas.getContext('2d').drawImage(img, 0, 0);
+        fetch('https://raw.githubusercontent.com/sowon-project/national-flag-image-api/main/docs/files/south-korea-flag.svg')
+            .then(response => response.text())
+            .then((data) => {
+                console.log(data)
+                svg = data.substring(data.indexOf("<svg"));
 
-function dlCanvas() {
-  var dt = canvas.toDataURL('image/png'); // << this fails in IE/Edge...
-  dt = dt.replace(/^data:image\/[^;]*/, 'data:application/octet-stream');
-  dt = dt.replace(/^data:application\/octet-stream/, 'data:application/octet-stream;headers=Content-Disposition%3A%20attachment%3B%20filename=Canvas.png');
-  this.href = dt;
-};
-document.getElementById('dl').addEventListener('click', dlCanvas, false);
+                console.log(svg)
 
 
 
 
 
+        var img = document.querySelector('img');
+        var canvas = document.querySelector('canvas');
 
-         // var canvas = document.getElementById('canvas1');
-         // var ctx = canvas.getContext('2d');
-         // var data = "files/south-korea-flag.svg";
-         // var DOMURL = window.URL || window.webkitURL || window;
-         // var img1 = new Image();
-         // var svg = new Blob(["files/south-korea-flag.svg"], {type: 'image/svg+xml'});
-         // console.log(svg);
-         // var url = DOMURL.createObjectURL(svg);
-         // console.log("createObjectURL");
-         // img1.onload = function() {
-         //    console.log("hello");
-         //    ctx.drawImage(img1, 0, 0);
-         //    DOMURL.revokeObjectURL(url);
-         // }
-         // img1.src = data;
+        // get svg data
+        var xml = new XMLSerializer().serializeToString(svg);
+
+        // make it base64
+        var svg64 = btoa(xml);
+        var b64Start = 'data:image/svg+xml;base64,';
+
+        // prepend a "header"
+        var image64 = b64Start + svg64;
+
+        // set it as the source of the img element
+        img.src = image64;
+
+        // draw the image onto the canvas
+        canvas.getContext('2d').drawImage(img, 0, 0);
+
+
+
+
+        function dlCanvas() {
+            var dt = canvas.toDataURL('image/png'); // << this fails in IE/Edge...
+            dt = dt.replace(/^data:image\/[^;]*/, 'data:application/octet-stream');
+            dt = dt.replace(/^data:application\/octet-stream/, 'data:application/octet-stream;headers=Content-Disposition%3A%20attachment%3B%20filename=Canvas.png');
+            this.href = dt;
+        };
+        document.getElementById('dl').addEventListener('click', dlCanvas, false);
 
 
 
 
 
-            // var element = document.createElement('a');
-            // element.setAttribute('href', canvas.toDataURL("image/png"));
-            // element.setAttribute('download', file);
-            // element.style.display = 'none';
-            // document.body.appendChild(element);
-            // element.click();
+
+            })
+
+
+
+
+
+        // var canvas = document.getElementById('canvas1');
+        // var ctx = canvas.getContext('2d');
+        // var data = "files/south-korea-flag.svg";
+        // var DOMURL = window.URL || window.webkitURL || window;
+        // var img1 = new Image();
+        // var svg = new Blob(["files/south-korea-flag.svg"], {type: 'image/svg+xml'});
+        // console.log(svg);
+        // var url = DOMURL.createObjectURL(svg);
+        // console.log("createObjectURL");
+        // img1.onload = function() {
+        //    console.log("hello");
+        //    ctx.drawImage(img1, 0, 0);
+        //    DOMURL.revokeObjectURL(url);
+        // }
+        // img1.src = data;
+
+
+
+
+
+        // var element = document.createElement('a');
+        // element.setAttribute('href', canvas.toDataURL("image/png"));
+        // element.setAttribute('download', file);
+        // element.style.display = 'none';
+        // document.body.appendChild(element);
+        // element.click();
 
 
 
