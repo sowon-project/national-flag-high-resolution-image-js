@@ -19,7 +19,7 @@ class NationalFlagApi {
         var country = countryParam.toLowerCase();
 
 
-        fetch('https://sowon-project.github.io/national-flag-image-api/files/' + country + '.svg')
+        fetch('https://sowon-project.github.io/national-flag-high-resolution-image-js/files/' + country + '.svg')
             .then(response => response.text())
             .then((data) => {
 
