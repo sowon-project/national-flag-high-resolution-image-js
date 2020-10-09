@@ -5,7 +5,7 @@
 # how to use?
 
 **Step1)** Include library
-You can download the latest release script. 
+You can download the [latest release script](https://github.com/sowon-project/national-flag-image-api/blob/main/docs/js/national-flag-api-1.0.0.js). 
 ```js
 <script type="text/javascript"  src="js/national-flag-api-1.0.0.js"></script>
 ```
@@ -46,4 +46,8 @@ window.onload=function() {
         .build();
     flagImage.set();
 }
+```
+
+# License
+[MIT license](https://github.com/sowon-project/national-flag-image-api/blob/main/LICENSE)
 
